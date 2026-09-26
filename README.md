@@ -2,7 +2,7 @@
 
 FitLog is a dark, no-nonsense gym companion. Browse a library of twelve lifts, open any workout to see its specs and step-by-step instructions, lock up to five lifts into today's plan, and watch your minutes and calories add up.
 
-**Live site:** _add your deployed link here_
+**Live site:** [fitlog-nafisa2.vercel.app](https://fitlog-nafisa2.vercel.app/)
 
 ## 🛠️ Technologies Used
 
