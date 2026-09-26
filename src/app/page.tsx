@@ -1,69 +1,173 @@
-import Image from "next/image";
+import type { ReactNode } from "react";
+import { Bookmark, Clock, Flame, Star } from "lucide-react";
+import { workouts } from "@/data/workouts";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
+function Logo({ compact = false }: { compact?: boolean }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 font-semibold tracking-[0.16em] ${compact ? "text-[11px]" : "text-xs"}`}
+    >
+      <img src="/assets/logo.png" alt="" className="size-4" />
+      FITLOG
+    </span>
+  );
+}
+
+function Stat({
+  icon,
+  label,
+  tip,
+}: {
+  icon: ReactNode;
+  label: string;
+  tip: string;
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger className="inline-flex items-center gap-1 rounded-md text-[11px] text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/60">
+        {icon}
+        {label}
+      </TooltipTrigger>
+      <TooltipContent>{tip}</TooltipContent>
+    </Tooltip>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-full bg-background text-foreground">
+      <div className="mx-auto flex min-h-full w-full max-w-270 flex-col px-5 py-6 sm:px-8">
+        <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <Logo />
+          <nav className="flex items-center gap-1">
+            <Button size="xs" className="rounded-full px-3 font-semibold">
+              Workouts
+            </Button>
+            <Button size="xs" variant="ghost" className="text-muted-foreground">
+              My Plan
+            </Button>
+          </nav>
+          <div className="flex items-center justify-end gap-1">
+            <Button size="xs" variant="ghost">
+              <span className="size-2 rounded-full bg-primary" />
+              Plan
+            </Button>
+            <Button size="xs" variant="ghost" className="text-muted-foreground">
+              <Bookmark />
+              Saved
+            </Button>
+          </div>
+        </header>
+
+        <Card className="mt-6 rounded-3xl py-0">
+          <div className="grid items-center gap-8 px-6 py-8 sm:px-10 sm:py-10 lg:grid-cols-[1.35fr_0.75fr]">
+            <div>
+              <p className="text-[11px] font-semibold tracking-[0.22em] text-primary">
+                WORKOUT LIBRARY
+              </p>
+              <h1 className="mt-4 text-[2.35rem] font-extrabold leading-[0.92] tracking-[-0.035em] text-foreground sm:text-[2.85rem]">
+                TRAIN WITH INTENT. LOG
+                <br />
+                EVERY SET.
+              </h1>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+                FitLog is a dark, no-nonsense gym companion: pick a lift, tack it into today&apos;s
+                plan, and watch the week&apos;s work add up.
+              </p>
+              <Button
+                nativeButton={false}
+                render={<a href="#library" />}
+                size="sm"
+                className="mt-6 h-8 w-fit rounded-md px-3.5 text-[11px] font-bold tracking-[0.08em]"
+              >
+                BROWSE WORKOUTS
+              </Button>
+            </div>
+            <div className="hidden h-56 lg:block">
+              <img
+                src="/assets/banner.png"
+                alt=""
+                className="h-full w-full object-contain object-right"
+              />
+            </div>
+          </div>
+        </Card>
+
+        <section id="library" className="mt-10 scroll-mt-6">
+          <h2 className="text-sm font-bold tracking-[0.14em]">THE LIBRARY</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Twelve lifts covering every major muscle group.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {workouts.map((workout) => (
+              <Card
+                key={workout.id}
+                size="sm"
+                className="rounded-2xl pt-0 transition-[box-shadow,ring-color] hover:ring-primary/40"
+              >
+                <div className="relative aspect-16/11">
+                  <img src={workout.image} alt="" className="h-full w-full object-cover" />
+                  <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-1.5 bg-linear-to-t from-black/80 to-transparent px-3 pt-8 pb-3">
+                    {workout.muscleGroups.map((group) => (
+                      <Badge
+                        key={group}
+                        className="h-4 rounded-full px-2 text-[9px] font-bold tracking-[0.08em]"
+                      >
+                        {group.toUpperCase()}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                <CardHeader className="pb-0">
+                  <CardTitle className="text-[13px] font-bold tracking-[0.04em] uppercase">
+                    {workout.name}
+                  </CardTitle>
+                  <CardDescription className="text-[11px]">{workout.equipment}</CardDescription>
+                </CardHeader>
+                <CardFooter className="gap-3 border-0 bg-transparent pt-0">
+                  <Stat
+                    icon={<Clock />}
+                    label={`${workout.duration} min`}
+                    tip={`${workout.duration} minute session`}
+                  />
+                  <Stat
+                    icon={<Flame />}
+                    label={`${workout.caloriesBurned} kcal`}
+                    tip={`${workout.caloriesBurned} calories`}
+                  />
+                  <Stat
+                    icon={<Star />}
+                    label={workout.rating.toFixed(1)}
+                    tip={`Rated ${workout.rating.toFixed(1)} out of 5`}
+                  />
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <footer className="mt-12">
+          <Separator />
+          <div className="flex items-center justify-between gap-4 py-5 text-muted-foreground">
+            <Logo compact />
+            <p className="text-[10px] sm:text-[11px]">
+              © 2026 FitLog — Workout library. Train hard, log honest.
+            </p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
