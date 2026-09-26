@@ -6,6 +6,7 @@ import { Bookmark, CalendarPlus } from "lucide-react";
 import { toast } from "sonner";
 import type { Workout } from "@/data/workouts";
 import { getWorkout } from "@/lib/workouts-api";
+import { LoadingState } from "@/components/loading-state";
 import { PLAN_LIMIT, usePlan } from "@/context/plan-context";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,7 +23,7 @@ export default function WorkoutDetailPage() {
       .finally(() => setLoading(false));
   }, [params.id]);
 
-  if (loading) return <p className="mt-10 text-sm text-muted-foreground">Loading workout…</p>;
+  if (loading) return <LoadingState label="Loading workout…" />;
   if (!workout) return <p className="mt-10 text-sm text-muted-foreground">Workout not found.</p>;
 
   const inPlan = plan.includes(workout.id);

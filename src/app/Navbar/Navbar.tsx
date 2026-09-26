@@ -26,25 +26,19 @@ export function Navbar() {
 
       <nav className="flex items-center gap-1">
         <Link href="/" className={navLink(onWorkouts)}>
-          Workouts
+          Workout
         </Link>
         <Link href="/my-plan" className={navLink(onPlan)}>
           My Plan
         </Link>
       </nav>
 
-      <div className="flex items-center justify-end gap-4 text-[11px] font-semibold">
-        <Link href="/my-plan" className="inline-flex items-center gap-1.5">
-          Plan
-          <span className="grid size-4.5 place-items-center rounded-full bg-primary text-[10px] text-primary-foreground">
-            {plan.length}
-          </span>
+      <div className="flex items-center justify-end gap-2 text-[11px] font-semibold">
+        <Link href="/my-plan" className="rounded-full bg-primary px-2.5 py-1 text-primary-foreground">
+          Plan {plan.length}
         </Link>
-        <Link href="/my-plan?tab=saved" className="inline-flex items-center gap-1.5 text-muted-foreground">
-          Saved
-          <span className="grid size-4.5 place-items-center rounded-full bg-secondary text-[10px] text-foreground ring-1 ring-border">
-            {saved.length}
-          </span>
+        <Link href="/my-plan?tab=saved" className="rounded-full border border-primary px-2.5 py-1 text-primary">
+          Saved {saved.length}
         </Link>
       </div>
     </header>

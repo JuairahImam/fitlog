@@ -8,6 +8,7 @@ import type { Workout } from "@/data/workouts";
 import { getWorkouts } from "@/lib/workouts-api";
 import { usePlan } from "@/context/plan-context";
 import { Button } from "@/components/ui/button";
+import { LoadingState } from "@/components/loading-state";
 import { cn } from "@/lib/utils";
 
 type Tab = "plan" | "saved";
@@ -16,11 +17,14 @@ type SortKey = "duration" | "calories" | "rating";
 export function MyPlan({ initialTab }: { initialTab: Tab }) {
   const { plan, saved, done, removeFromPlan, removeFromSaved, markDone } = usePlan();
   const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>(initialTab);
   const [sortBy, setSortBy] = useState<SortKey>("duration");
 
   useEffect(() => {
-    getWorkouts().then(setWorkouts);
+    getWorkouts()
+      .then(setWorkouts)
+      .finally(() => setLoading(false));
   }, []);
 
   const planWorkouts = workouts.filter((workout) => plan.includes(workout.id));
@@ -99,7 +103,9 @@ export function MyPlan({ initialTab }: { initialTab: Tab }) {
         </label>
       </div>
 
-      {sorted.length === 0 ? (
+      {loading ? (
+        <LoadingState />
+      ) : sorted.length === 0 ? (
         <div className="mt-4 flex flex-col items-center rounded-2xl border border-border bg-card px-6 py-20 text-center">
           <h2 className="font-heading text-lg font-bold">NOTHING HERE YET</h2>
           <p className="mt-1 text-xs text-muted-foreground">

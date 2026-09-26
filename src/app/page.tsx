@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Library } from "./Library/Library";
@@ -27,6 +28,7 @@ export default function Home() {
               className="mt-6 h-8 w-fit rounded-md px-3.5 text-[11px] font-bold tracking-[0.08em]"
             >
               BROWSE WORKOUTS
+              <ArrowDown />
             </Button>
           </div>
           <div className="hidden h-56 lg:block">

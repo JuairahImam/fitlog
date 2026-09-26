@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDown, Clock, Flame, Star } from "lucide-react";
 import type { Workout } from "@/data/workouts";
 import { getWorkouts } from "@/lib/workouts-api";
+import { LoadingState } from "@/components/loading-state";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -29,7 +30,7 @@ export function Library() {
   }, [workouts, sortBy]);
 
   if (loading) {
-    return <p className="mt-10 text-sm text-muted-foreground">Loading workouts…</p>;
+    return <LoadingState />;
   }
 
   return (
