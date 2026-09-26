@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { Navbar } from "./Navbar/Navbar";
@@ -27,9 +28,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">
         <TooltipProvider delay={400}>
-          <Navbar />
-          {children}
-          </TooltipProvider>
+          <div className="mx-auto flex w-full max-w-270 flex-1 flex-col px-5 py-6 sm:px-8">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <footer className="mt-12">
+              <Separator />
+              <div className="flex items-center justify-between gap-4 py-5 text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.16em]">
+                  <img src="/assets/logo.png" alt="" className="size-4" />
+                  FITLOG
+                </span>
+                <p className="text-[10px] sm:text-[11px]">
+                  © 2026 FitLog — Workout Library. Train hard, log honest.
+                </p>
+              </div>
+            </footer>
+          </div>
+        </TooltipProvider>
       </body>
     </html>
   );
