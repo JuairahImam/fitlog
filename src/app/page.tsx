@@ -11,7 +11,7 @@ export default function Home() {
             <p className="text-[11px] font-semibold tracking-[0.22em] text-primary">
               WORKOUT LIBRARY
             </p>
-            <h1 className="mt-4 text-[2.35rem] font-extrabold leading-[0.92] tracking-[-0.035em] text-foreground sm:text-[2.85rem]">
+            <h1 className="mt-4 font-heading text-[2.35rem] font-bold leading-[1] tracking-[-0.01em] text-foreground sm:text-[2.85rem]">
               TRAIN WITH INTENT. LOG
               <br />
               EVERY SET.

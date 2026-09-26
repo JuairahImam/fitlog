@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Clock, Flame, Star } from "lucide-react";
 import type { Workout } from "@/data/workouts";
+import { getWorkouts } from "@/lib/workouts-api";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -15,9 +16,8 @@ export function Library() {
   const [sortBy, setSortBy] = useState<SortKey>("duration");
 
   useEffect(() => {
-    fetch("https://api.abcz.workers.dev/api/fitlog")
-      .then((res) => res.json())
-      .then((data: Workout[]) => setWorkouts(data))
+    getWorkouts()
+      .then(setWorkouts)
       .finally(() => setLoading(false));
   }, []);
 
@@ -36,7 +36,7 @@ export function Library() {
     <section id="library" className="mt-10 scroll-mt-6">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h2 className="text-sm font-bold tracking-[0.14em]">THE LIBRARY</h2>
+          <h2 className="font-heading text-xl font-bold tracking-[0.02em]">THE LIBRARY</h2>
           <p className="mt-1 text-xs text-muted-foreground">
             Twelve lifts covering every major muscle group.
           </p>
@@ -71,7 +71,7 @@ export function Library() {
                 </div>
               </div>
               <CardHeader className="pb-0">
-                <CardTitle className="text-[13px] font-bold tracking-[0.04em] uppercase">
+                <CardTitle className="font-heading text-sm font-bold tracking-[0.04em] uppercase">
                   {workout.name}
                 </CardTitle>
                 <CardDescription className="text-[11px]">{workout.equipment}</CardDescription>
