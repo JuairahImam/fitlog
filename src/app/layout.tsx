@@ -41,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <main className="flex-1">{children}</main>
             <footer className="mt-12">
               <Separator />
-              <div className="flex items-center justify-between gap-4 py-5 text-muted-foreground">
+              <div className="flex flex-col items-center justify-between gap-2 py-5 text-center text-muted-foreground sm:flex-row sm:text-left">
                 <span className="inline-flex items-center gap-1.5 font-heading text-xs font-bold tracking-[0.08em] text-foreground">
                   <img src="/assets/logo.png" alt="" className="size-4" />
                   FITLOG

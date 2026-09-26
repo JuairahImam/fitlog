@@ -62,7 +62,7 @@ export function MyPlan({ initialTab }: { initialTab: Tab }) {
 
       <div className="mt-6 grid grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-card">
         {stats.map((stat) => (
-          <div key={stat.label} className="px-5 py-4">
+          <div key={stat.label} className="px-3 py-4 sm:px-5">
             <p className="text-[11px] text-muted-foreground">{stat.label}</p>
             <p className={cn("mt-1 font-heading text-3xl font-bold", stat.highlight && "text-primary")}>
               {stat.value}
@@ -71,7 +71,7 @@ export function MyPlan({ initialTab }: { initialTab: Tab }) {
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-between gap-4">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <div className="inline-flex rounded-lg border border-border bg-card p-1 text-[11px] font-semibold">
           {(["plan", "saved"] as const).map((key) => (
             <button
@@ -123,7 +123,7 @@ export function MyPlan({ initialTab }: { initialTab: Tab }) {
               <li
                 key={workout.id}
                 className={cn(
-                  "flex items-center gap-4 rounded-2xl border border-border bg-card p-3",
+                  "flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-card p-3 sm:flex-nowrap sm:gap-4",
                   isDone && "opacity-60"
                 )}
               >
@@ -137,7 +137,7 @@ export function MyPlan({ initialTab }: { initialTab: Tab }) {
                     <span className="inline-flex items-center gap-1"><Star className="size-3" />{workout.rating.toFixed(1)}</span>
                   </div>
                 </div>
-                <div className="flex shrink-0 items-center gap-2">
+                <div className="flex w-full shrink-0 items-center justify-end gap-2 sm:w-auto">
                   <Button
                     variant="outline"
                     size="sm"

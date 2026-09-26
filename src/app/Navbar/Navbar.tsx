@@ -18,13 +18,13 @@ export function Navbar() {
     );
 
   return (
-    <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-border pb-4">
+    <header className="grid grid-cols-2 items-center gap-3 border-b border-border pb-4 sm:grid-cols-[1fr_auto_1fr]">
       <Link href="/" className="inline-flex items-center gap-1.5 font-heading text-sm font-bold tracking-[0.08em]">
         <img src="/assets/logo.png" alt="" className="size-4" />
         FITLOG
       </Link>
 
-      <nav className="flex items-center gap-1">
+      <nav className="order-last col-span-2 flex items-center justify-center gap-1 sm:order-none sm:col-span-1">
         <Link href="/" className={navLink(onWorkouts)}>
           Workout
         </Link>
